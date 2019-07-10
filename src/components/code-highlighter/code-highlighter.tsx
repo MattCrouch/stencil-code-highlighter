@@ -1,4 +1,4 @@
-import { Component, Element, h } from "@stencil/core";
+import { Component, Element, h, Prop } from "@stencil/core";
 import formatCode from "./formatCode";
 
 @Component({
@@ -7,12 +7,13 @@ import formatCode from "./formatCode";
   shadow: true
 })
 export class GroupOption {
+  @Prop() language: string;
   @Element() el: HTMLElement;
 
   render() {
     return (
-      <pre class="language-css">
-        <code class="language-css" innerHTML={formatCode(this.el.innerHTML, "css")} />
+      <pre class={`language-${this.language}`}>
+        <code class={`language-${this.language}`} innerHTML={formatCode(this.el.innerHTML, this.language)} />
       </pre>
     );
   }

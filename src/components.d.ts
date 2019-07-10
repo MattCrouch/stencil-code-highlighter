@@ -9,7 +9,9 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface CodeHighlighter {}
+  interface CodeHighlighter {
+    'language': string;
+  }
 }
 
 declare global {
@@ -26,7 +28,9 @@ declare global {
 }
 
 declare namespace LocalJSX {
-  interface CodeHighlighter extends JSXBase.HTMLAttributes<HTMLCodeHighlighterElement> {}
+  interface CodeHighlighter extends JSXBase.HTMLAttributes<HTMLCodeHighlighterElement> {
+    'language'?: string;
+  }
 
   interface IntrinsicElements {
     'code-highlighter': CodeHighlighter;

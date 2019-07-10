@@ -11,10 +11,30 @@
 </head>
 <body>
 
-  <code-highlighter>
+  <code-highlighter language="css">
 body {
   background: blue;
 }
+  </code-highlighter>
+
+  <code-highlighter language="js">
+import * as sapper from "@sapper/server";
+import express from "express";
+import compression from "compression";
+import sirv from "sirv";
+
+// Start up server + build static assets
+express()
+  .use(
+    compression({ threshold: 0 }),
+    sirv("static", { dev }),
+    sapper.middleware()
+  )
+  .listen(PORT, err => {
+    if (err) {
+      console.log("error", err);
+    }
+  });
   </code-highlighter>
 
 </body>

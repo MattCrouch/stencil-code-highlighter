@@ -1,3 +1,4 @@
+// TODO: slim down options as per repo browser description
 import Refractor from "refractor";
 import Rehype from "rehype";
 
