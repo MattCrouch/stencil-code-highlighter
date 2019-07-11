@@ -7,14 +7,21 @@ import formatCode from "./formatCode";
   shadow: true
 })
 export class GroupOption {
+  @Prop() filename: string;
   @Prop() language: string;
   @Element() el: HTMLElement;
 
   render() {
     return (
-      <pre class={`language-${this.language}`}>
-        <code class={`language-${this.language}`} innerHTML={formatCode(this.el.innerHTML, this.language)} />
-      </pre>
+      <div class="container">
+        <pre class={`language-${this.language}`}>
+          <code class={`language-${this.language}`} innerHTML={formatCode(this.el.innerHTML, this.language)} />
+        </pre>
+        <div class="footer">
+          <span>{ this.filename }</span>
+          <button>Copy</button>
+        </div>
+      </div>
     );
   }
 }
