@@ -11,6 +11,10 @@ export class GroupOption {
   @Prop() language: string;
   @Element() el: HTMLElement;
 
+  copy() {
+    navigator.clipboard.writeText(this.el.innerHTML);
+  }
+
   render() {
     return (
       <div class="container">
@@ -19,7 +23,7 @@ export class GroupOption {
         </pre>
         <div class="footer">
           <span>{ this.filename }</span>
-          <button>Copy</button>
+          <button onClick={this.copy.bind(this)}>Copy</button>
         </div>
       </div>
     );
