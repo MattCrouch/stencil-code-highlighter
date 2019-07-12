@@ -10,6 +10,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface CodeHighlighter {
+    'collapsed': boolean;
     'filename': string;
     'language': string;
   }
@@ -30,6 +31,7 @@ declare global {
 
 declare namespace LocalJSX {
   interface CodeHighlighter extends JSXBase.HTMLAttributes<HTMLCodeHighlighterElement> {
+    'collapsed'?: boolean;
     'filename'?: string;
     'language'?: string;
   }
