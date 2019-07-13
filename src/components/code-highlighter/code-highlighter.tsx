@@ -1,4 +1,4 @@
-import { Component, Element, h, Prop } from "@stencil/core";
+import { Component, Element, h, Prop, Watch, State } from "@stencil/core";
 import formatCode from "./formatCode";
 
 @Component({
@@ -6,12 +6,28 @@ import formatCode from "./formatCode";
   styleUrls: ["prism.css", "code-highlighter.css"],
   shadow: true
 })
-export class GroupOption {
+export class CodeHighlighter {
   @Prop() filename: string;
   @Prop() language: string;
-  @Prop({ mutable: true, reflectToAttr: true }) collapsed: boolean = false;
+  @Prop({ mutable: true, reflect: true }) collapsed: boolean = false;
+
+  @State() error: boolean = false;
+
+  @Watch('language')
+  validateLanguage(value: string) {
+    if(typeof value !== "string") {
+      this.error = true;
+      throw new Error("Language must be set");
+    }
+
+    this.error = false;
+  }
 
   @Element() el: HTMLElement;
+
+  connectedCallback() {
+    this.validateLanguage(this.language);
+  }
 
   copy() {
     navigator.clipboard.writeText(this.el.innerHTML);
@@ -22,6 +38,10 @@ export class GroupOption {
   }
 
   render() {
+    if(this.error) {
+      return null;
+    }
+
     return (
       <div class="container">
         { !this.collapsed && <pre class={`language-${this.language}`}>
