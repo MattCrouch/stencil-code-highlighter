@@ -38,6 +38,9 @@ button.toggle {
   text-align: left;
   flex: 1;
   margin-right: 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 button.copy {
