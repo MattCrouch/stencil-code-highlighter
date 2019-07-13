@@ -50,13 +50,11 @@ export class CodeHighlighter {
     return (
       <div class="container">
         <div class="header">
-          <div>
-            <button class="toggle" onClick={this.toggle.bind(this)}>
-              <span class="indicator" innerHTML={this.collapsed ? "&#9656;" : "&#9662;"} />
-              <span>{ this.filename }</span>
-            </button>
-          </div>
-            <button class="copy" onClick={this.copy.bind(this)}>Copy</button>
+          <button class="toggle" onClick={this.toggle.bind(this)}>
+            <span class="indicator" innerHTML={this.collapsed ? "&#9656;" : "&#9662;"} />
+            <span>{ this.filename }</span>
+          </button>
+          <button class="copy" onClick={this.copy.bind(this)}>Copy</button>
         </div>
         { !this.collapsed && <pre class={`language-${this.language}`}>
           <code class={`language-${this.language}`} innerHTML={formatCode(this.el.innerHTML, this.language)} />
