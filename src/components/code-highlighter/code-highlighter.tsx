@@ -13,9 +13,9 @@ export class CodeHighlighter {
 
   @State() error: boolean = false;
 
-  @Watch('language')
+  @Watch("language")
   validateLanguage(value: string) {
-    if(typeof value !== "string") {
+    if (typeof value !== "string") {
       this.error = true;
       throw new Error("Language must be set");
     }
@@ -35,7 +35,13 @@ export class CodeHighlighter {
   }
 
   copy() {
-    navigator.clipboard.writeText(this.el.innerHTML);
+    const temp = document.createElement("textarea");
+    temp.readOnly = true;
+    temp.value = this.el.innerHTML;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    document.body.removeChild(temp);
   }
 
   toggle() {
@@ -43,7 +49,7 @@ export class CodeHighlighter {
   }
 
   render() {
-    if(this.error) {
+    if (this.error) {
       return null;
     }
 
@@ -51,14 +57,24 @@ export class CodeHighlighter {
       <div class="container">
         <div class="header">
           <button class="toggle" onClick={this.toggle.bind(this)}>
-            <span class="indicator" innerHTML={this.collapsed ? "&#9656;" : "&#9662;"} />
-            <span>{ this.filename }</span>
+            <span
+              class="indicator"
+              innerHTML={this.collapsed ? "&#9656;" : "&#9662;"}
+            />
+            <span>{this.filename}</span>
           </button>
-          <button class="copy" onClick={this.copy.bind(this)}>Copy</button>
+          <button class="copy" onClick={this.copy.bind(this)}>
+            Copy
+          </button>
         </div>
-        { !this.collapsed && <pre class={`language-${this.language}`}>
-          <code class={`language-${this.language}`} innerHTML={formatCode(this.el.innerHTML, this.language)} />
-        </pre> }
+        {!this.collapsed && (
+          <pre class={`language-${this.language}`}>
+            <code
+              class={`language-${this.language}`}
+              innerHTML={formatCode(this.el.innerHTML, this.language)}
+            />
+          </pre>
+        )}
       </div>
     );
   }

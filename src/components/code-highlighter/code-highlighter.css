@@ -27,6 +27,7 @@ button {
   appearance: none;
   background: none;
   border: 0;
+  color: inherit;
   font-family: inherit;
   font-size: inherit;
   cursor: pointer;
@@ -45,7 +46,8 @@ button.copy {
   background: rgba(0, 0, 0, 0.1);
 }
 
-button.copy:focus, button.copy:hover {
+button.copy:focus,
+button.copy:hover {
   background: rgba(0, 0, 0, 0.2);
 }
 

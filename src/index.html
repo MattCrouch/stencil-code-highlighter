@@ -1,43 +1,128 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>code-highlighter example</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>code-highlighter example</title>
 
-  <script type="module" src="/build/stencil-code-formatter.esm.js"></script>
-  <script nomodule src="/build/stencil-code-formatter.js"></script>
+    <script type="module" src="/build/stencil-code-formatter.esm.js"></script>
+    <link rel="stylesheet" href="/build/stencil-code-formatter.css" />
+    <script nomodule src="/build/stencil-code-formatter.js"></script>
 
-  <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap" rel="stylesheet">
-  
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap"
+    />
+  </head>
+  <body>
+    <article class="container">
+      <header>
+        <h1>Creating components with Stencil</h1>
+      </header>
 
-  <code-highlighter filename="style.css" language="css">
-body {
-  background: blue;
+      <p>
+        Stencil is a compiler for web components. It allows developers to create
+        custom elements for their website while also allowing the use of common
+        developer tools such as JSX and TypeScript.
+      </p>
+
+      <p>
+        Stencil provides a great command-line tool to get started. Build out a
+        project by running <code>npm init stencil</code> on the command line and
+        following the on-screen prompts to create a custom element.
+      </p>
+
+      <p>
+        This stamps out a development environment and an example element that we
+        can update as needed.
+      </p>
+
+      <code-highlighter
+        collapsed
+        filename="src/components/my-component.js"
+        language="ts"
+      >
+import { Component, Prop, h } from '@stencil/core';
+import { format } from '../../utils/utils';
+
+@Component({
+  tag: 'my-component',
+  styleUrl: 'my-component.css',
+  shadow: true
+})
+export class MyComponent {
+  /**
+    * The first name
+    */
+  @Prop() first: string;
+
+  /**
+    * The middle name
+    */
+  @Prop() middle: string;
+
+  /**
+    * The last name
+    */
+  @Prop() last: string;
+
+  private getText(): string {
+    return format(this.first, this.middle, this.last);
+  }
+
+  render() {
+    return <div>Hello, World! I'm {this.getText()}</div>;
+  }
+}      
+      </code-highlighter>
+
+      <p>
+        The <code>@Component</code> decorator denotes this class as a component.
+        It requires a tag name (in this case <code>my-component</code>) but can
+        take many more configuration options.
+      </p>
+
+      <p>
+        Each prop is denoted by the <code>@Prop</code> decorator. These are
+        values that can be changed externally through the component's
+        attributes.
+      </p>
+
+      <p>
+        The <code>render()</code> method describes what the component should
+        display. This is written in JSX and can contain anything required -
+        HTML, JS or even other Stencil components.
+      </p>
+
+      <p>
+        Each component can have some styles associated with it. These are
+        applied to the component based on the path suppplied to the
+        <code>styleUrl</code> property in the component set up.
+      </p>
+
+      <code-highlighter
+        filename="src/components/my-component.css"
+        language="css"
+      >
+:root {
+font-size: 18px;
+font-weight: bold;
+text-align: center;
 }
-  </code-highlighter>
+      </code-highlighter>
 
-  <code-highlighter collapsed filename="server.js" language="js">
-import * as sapper from "@sapper/server";
-import express from "express";
-import compression from "compression";
-import sirv from "sirv";
+      <p>
+        The styles applied here are scoped only to that component. This means
+        they can be as generic as possible without having to worry about the
+        contents spilling out and affecting the rest of the page.
+      </p>
 
-// Start up server + build static assets
-express()
-  .use(
-    compression({ threshold: 0 }),
-    sirv("static", { dev }),
-    sapper.middleware()
-  )
-  .listen(PORT, err => {
-    if (err) {
-      console.log("error", err);
-    }
-  });
-  </code-highlighter>
-
-</body>
+      <p>
+        When built, Stencil generates a file that can be dropped in to any
+        project and use the component without having to worry about its inner
+        workings. This includes other Stencil projects, regular HTML pages and
+        also other JavaScript frameworks such as React, Vue and Angular.
+      </p>
+    </article>
+  </body>
 </html>
