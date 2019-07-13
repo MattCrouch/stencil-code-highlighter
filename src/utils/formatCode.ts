@@ -1,5 +1,10 @@
-import Refractor from "refractor";
+import Refractor from "refractor/core";
 import Rehype from "rehype";
+
+// Supported languages
+import tsx from "refractor/lang/tsx.js";
+
+Refractor.register(tsx);
 
 export const formatCode = (code: string, type: string) => {
     var nodes = Refractor.highlight(code, type);
