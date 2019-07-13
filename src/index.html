@@ -38,7 +38,6 @@
       </p>
 
       <code-highlighter
-        collapsed
         filename="src/components/my-component.tsx"
         language="tsx"
       >
@@ -116,6 +115,15 @@ export class MyComponent {
         they can be as generic as possible without having to worry about the
         contents spilling out and affecting the rest of the page.
       </p>
+
+      <p>
+        The result is a component that can be used like any other element.
+        Stencil provides an index page to demo a component to try it out.
+      </p>
+
+      <code-highlighter filename="index.html" language="html">
+        <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+      </code-highlighter>
 
       <p>
         When built, Stencil generates a file that can be dropped in to any
