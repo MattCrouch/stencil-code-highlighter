@@ -11,4 +11,8 @@ export const formatCode = (code: string, type: string) => {
     return html.trim();
 }
 
+export const isSupported = (type: string) => {
+    return Refractor.listLanguages().includes(type);
+}
+
 export default formatCode;

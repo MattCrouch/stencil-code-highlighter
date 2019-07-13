@@ -1,5 +1,5 @@
 import { Component, Element, h, Prop, Watch, State } from "@stencil/core";
-import formatCode from "./formatCode";
+import formatCode, { isSupported } from "./formatCode";
 
 @Component({
   tag: "code-highlighter",
@@ -18,6 +18,11 @@ export class CodeHighlighter {
     if(typeof value !== "string") {
       this.error = true;
       throw new Error("Language must be set");
+    }
+
+    if (!isSupported(value)) {
+      this.error = true;
+      throw new Error("Language not supported");
     }
 
     this.error = false;
