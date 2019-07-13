@@ -1,5 +1,5 @@
 import { Component, Element, h, Prop, Watch, State } from "@stencil/core";
-import formatCode, { isSupported } from "./formatCode";
+import formatCode, { isSupported } from "../../utils/formatCode";
 
 @Component({
   tag: "code-highlighter",
