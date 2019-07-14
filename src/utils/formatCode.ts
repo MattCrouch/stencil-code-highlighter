@@ -11,10 +11,10 @@ Refractor.register(tsx);
 // Create function that applies formatting classes to code
 export const formatCode = (code: string, type: string) => {
   // Use Refractor to format code in to Prism syntax
-  var nodes = Refractor.highlight(code, type);
+  const nodes = Refractor.highlight(code, type);
 
   // Parse syntax to HTML
-  var html = Rehype()
+  const html = Rehype()
     .stringify({ type: "root", children: nodes })
     .toString();
 
