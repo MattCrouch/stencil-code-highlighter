@@ -1,23 +1,24 @@
-import { Config } from '@stencil/core';
-import nodePolyfills from 'rollup-plugin-node-polyfills';
+import { Config } from "@stencil/core";
+import nodePolyfills from "rollup-plugin-node-polyfills";
 
 export const config: Config = {
-  globalStyle: 'src/example-styling.css', // Used for tutorial example only
-  namespace: 'stencil-code-formatter',
+  globalStyle: "src/example-styling.css", // Used for tutorial example only
+  namespace: "CodeHighlighter",
   outputTargets: [
     {
-      type: 'dist',
-      esmLoaderPath: '../loader'
+      type: "dist",
+      esmLoaderPath: "../loader"
     },
     {
-      type: 'docs-readme'
+      // Generate docs for components
+      type: "docs-readme"
     },
     {
-      type: 'www',
-      serviceWorker: null // disable service workers
+      type: "www",
+      // Don't create a service worker
+      serviceWorker: null
     }
   ],
-  plugins: [
-    nodePolyfills(),
-  ]
+  // Allow node built-ins to be imported (for Rollup)
+  plugins: [nodePolyfills()]
 };
