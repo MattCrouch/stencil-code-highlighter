@@ -6,9 +6,9 @@ import formatCode, { isSupported } from "../../utils/formatCode";
 
 // Create a `code-highlighter` component
 @Component({
-  tag: "code-highlighter",
+  shadow: true,
   styleUrls: ["prism.css", "code-highlighter.css"],
-  shadow: true
+  tag: "code-highlighter"
 })
 export class CodeHighlighter {
   // Create props for filename, language and collapsed attributes
