@@ -1,6 +1,3 @@
-// Mock `formatCode` to avoid complicating the unit test
-jest.mock("./formatCode", () => (code: string) => code);
-
 // Import Stencil testing tools
 import { newSpecPage } from "@stencil/core/testing";
 

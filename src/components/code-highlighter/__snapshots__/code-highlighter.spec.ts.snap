@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders as expected 1`] = `
+<code-highlighter language="css">
+  <mock:shadow-root>
+    <div class="container">
+      <div class="header">
+        <button class="toggle">
+          <span class="indicator">
+            ▾
+          </span>
+          <span></span>
+        </button>
+        <button class="copy">
+          Copy
+        </button>
+      </div>
+      <pre class="language-css">
+        <code class="language-css"></code>
+      </pre>
+    </div>
+  </mock:shadow-root>
+</code-highlighter>
+`;
