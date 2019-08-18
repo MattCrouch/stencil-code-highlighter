@@ -14,6 +14,7 @@ export const config: Config = {
       type: "docs-readme"
     },
     {
+      baseUrl: "http://mattcrouch.github.io/stencilcodeformatter/",
       type: "www",
       // Don't create a service worker
       serviceWorker: null
